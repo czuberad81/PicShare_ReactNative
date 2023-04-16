@@ -2,20 +2,65 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, Pressable } from 'react-native';
 import tailwind from 'twrnc';
 import tw from 'twrnc';
-type LoginProps = {
-  onLogin: (email: string, password: string) => void;
-};
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+// type LoginProps = {
+//   navigation: StackNavigationProp<ParamListBase, 'Login'>;
+//   onLogin: (email: string, password: string) => void;
+// };
 
-export default function Login(props: LoginProps) {
+type Props = {
+  navigation: any;
+}
+const Login = ({navigation}: Props) => {
+  //const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    props.onLogin(email, password);
+  const handleLogin = async () => {
+    console.log("Email: " + email + " Password: " + password);
+  try {
+    
+    const response = await fetch('https://1541-24-141-188-182.ngrok.io/graphql', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `
+        mutation {
+          login(email: "${email}", password: "${password}") {
+            id
+            email
+          }
+        }
+      `,
+        variables: {
+          email,
+          password,
+        },
+      }),
+    });
+
+    const { data, errors } = await response.json();
+    if (errors) {
+      throw new Error('Invalid email or password(React  )');
+    }
+    else{
+      //Implement Navigation to Main Page.
+      console.log("Successful Login");
+      navigation.navigate('Main');
+
+    }
+
+    // Do something with the response data
+  } catch (error) {
+    console.error(error);
+  }
   };
 
   return (
-    <View style={tw`flex-1 items-center justify-center`}>
+    <View style={tw`flex-1 bg-gray-800 flex-1 items-center justify-center`}>
       <View style={tailwind`p-8 w-full max-w-sm`}>
       <Text style={tailwind`text-5xl font-bold mb-6 text-white`}>Login</Text>
       <TextInput
@@ -46,3 +91,5 @@ export default function Login(props: LoginProps) {
     </View>
   );
 }
+
+export default Login;
