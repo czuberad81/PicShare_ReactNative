@@ -2,7 +2,8 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import Login from './Pages/Login';
 import { gql } from 'graphql-tag';
-
+import tailwind from 'twrnc';
+import tw from 'twrnc';
 const handleLogin = async (email: string, password: string) => {
   console.log("Email: " + email + " Password: " + password);
   try {
@@ -45,7 +46,7 @@ const handleLogin = async (email: string, password: string) => {
 
 export default function App() {
   return (
-    <View>
+    <View style={tw`bg-gray-800 flex-1`}>
       <Login onLogin={handleLogin} />
     </View>
   );
