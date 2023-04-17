@@ -17,11 +17,14 @@ const Login = ({navigation}: Props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const handleSignup = () =>{
+    navigation.navigate('Signup');
+  }
   const handleLogin = async () => {
     console.log("Email: " + email + " Password: " + password);
   try {
     
-    const response = await fetch('https://b7ee-24-141-188-182.ngrok.io/graphql', {
+    const response = await fetch('https://2a74-24-141-188-182.ngrok.io/graphql', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -77,6 +80,17 @@ const Login = ({navigation}: Props) => {
         style={tailwind`w-full border-2 border-orange-500 bg-gray-800 text-orange-500 rounded-md h-12 px-4 mb-4`} 
         secureTextEntry value={password} 
         onChangeText={(text) => setPassword(text)} />
+
+    <View style={tailwind`flex flex-row justify-between items-center my-8`}>
+    <Pressable
+      onPress={handleSignup}
+    >
+      <Text style={tailwind`text-white font-bold`}>Signup</Text>
+    </Pressable>
+    
+
+
+    </View>
 
         <Pressable
           onPress={handleLogin}

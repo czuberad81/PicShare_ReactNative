@@ -35,9 +35,10 @@ const Main = () => {
             //       //return <Ionicons name={iconName} size={size} color={color} style={tw`mb-1`} />;
             //     }
             //   },
+          
           tabBarActiveTintColor: '#FF6347',
           tabBarInactiveTintColor: 'gray',
-          tabBarStyle: tw`bg-gray-800 border-sm`,
+          tabBarStyle: tw`bg-gray-800`,
         })}
       >
         <TabBar.Screen name="MapView" component={MapView} options={{ headerShown: false, headerStyle: {
