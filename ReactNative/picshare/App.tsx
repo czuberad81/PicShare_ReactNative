@@ -56,7 +56,10 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name="Login" component={LoginPage} options={{ headerShown: false }}/>
         <Stack.Screen name="Main" component={MainPage} options={{ headerShown: false, headerLeft:() => null }}/>
+        
       </Stack.Navigator>
+
+
     </NavigationContainer>
   );
 }

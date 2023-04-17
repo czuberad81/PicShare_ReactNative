@@ -2,11 +2,22 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, Pressable } from 'react-native';
 import tailwind from 'twrnc';
 import tw from 'twrnc';
+import { NavigationContainer } from '@react-navigation/native';
 
-export default function Main() {
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import MapView from './MapView';
+
+const TabBar = createBottomTabNavigator();
+
+const Main = () => {
   return (
-    <View style={tw`flex-1 items-center justify-center`}>
-      <Text style={tailwind`text-5xl font-bold mb-6 text-white`} >Main Page</Text>
-    </View>
+    
+    <TabBar.Navigator>
+        <TabBar.Screen name = "MapView" component={MapView} />
+
+    </TabBar.Navigator>
+    
   );
 }
+
+export default Main;
