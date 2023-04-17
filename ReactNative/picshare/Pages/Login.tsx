@@ -21,7 +21,7 @@ const Login = ({navigation}: Props) => {
     console.log("Email: " + email + " Password: " + password);
   try {
     
-    const response = await fetch('https://1541-24-141-188-182.ngrok.io/graphql', {
+    const response = await fetch('https://b7ee-24-141-188-182.ngrok.io/graphql', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
