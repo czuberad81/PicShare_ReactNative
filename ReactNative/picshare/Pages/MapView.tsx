@@ -7,6 +7,8 @@ const MapViewPage = () => {
   const TOP_PLACES = [
     {
       id: 1,
+      lat: 43.638993,
+      long: -79.412941,
       image: require('../assets/temp.png'),
       title: 'Amalfi',
       location: 'Italy',
@@ -15,6 +17,8 @@ const MapViewPage = () => {
     },
     {
       id: 2,
+      lat: 36.289726,
+      long: -121.752682,
       image: require('../assets/temp.png'),
       title: 'Granada',
       location: 'Spain',
@@ -23,6 +27,8 @@ const MapViewPage = () => {
     },
     {
       id: 3,
+      lat: 35.275067,
+      long: -120.797179,
       image: require('../assets/temp.png'),
       title: 'Cherry blossoms',
       location: 'Japan',
@@ -45,12 +51,19 @@ const MapViewPage = () => {
       >
         
         
-
+        {TOP_PLACES.map((place, index) => (
         <Marker
+          key={index}
+          coordinate={{latitude: place.lat, longitude: place.long}}
+          pinColor={'orange'}
+        />
+      ))}
+
+        {/* <Marker
           coordinate={{latitude: 37.78825, longitude: -122.4324}}
           pinColor={'orange'} // set the color of the marker pin to orange
           
-        />
+        /> */}
         
 
       </MapView>

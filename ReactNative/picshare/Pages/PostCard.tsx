@@ -12,6 +12,8 @@ import { colors, shadow, sizes, spacing } from '../Pages/theme';
 
 interface Item {
   id: number;
+  long: number;
+  lat: number;
   title: string;
   location: string;
   image: any; // Adjust the type of the image prop based on your actual image data type
