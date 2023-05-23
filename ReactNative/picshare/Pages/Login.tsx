@@ -21,45 +21,46 @@ const Login = ({navigation}: Props) => {
     navigation.navigate('Signup');
   }
   const handleLogin = async () => {
-    console.log("Email: " + email + " Password: " + password);
-  try {
+    navigation.navigate('Main');
+  //   console.log("Email: " + email + " Password: " + password);
+  // try {
     
-    const response = await fetch('https://9de0-24-141-188-182.ngrok.io/graphql', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: `
-        mutation {
-          login(email: "${email}", password: "${password}") {
-            id
-            email
-          }
-        }
-      `,
-        variables: {
-          email,
-          password,
-        },
-      }),
-    });
+  //   const response = await fetch('https://dec9-2001-1970-499a-eb00-f121-6900-c4dd-2346.ngrok.io/graphql', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       query: `
+  //       mutation {
+  //         login(email: "${email}", password: "${password}") {
+  //           id
+  //           email
+  //         }
+  //       }
+  //     `,
+  //       variables: {
+  //         email,
+  //         password,
+  //       },
+  //     }),
+  //   });
 
-    const { data, errors } = await response.json();
-    if (errors) {
-      throw new Error('Invalid email or password(React  )');
-    }
-    else{
-      //Implement Navigation to Main Page.
-      console.log("Successful Login");
-      navigation.navigate('Main');
+  //   const { data, errors } = await response.json();
+  //   if (errors) {
+  //     throw new Error('Invalid email or password(React  )');
+  //   }
+  //   else{
+  //     //Implement Navigation to Main Page.
+  //     console.log("Successful Login");
+  //     navigation.navigate('Main');
 
-    }
+  //   }
 
-    // Do something with the response data
-  } catch (error) {
-    console.error(error);
-  }
+  //   // Do something with the response data
+  // } catch (error) {
+  //   console.error(error);
+  // }
   };
 
   return (
