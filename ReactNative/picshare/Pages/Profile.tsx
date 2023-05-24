@@ -38,12 +38,12 @@ export default function Profile() {
   return (
     <View style={tw`flex-1 bg-gray-800 items-center justify-center`}>
       <Text style={tailwind`text-5xl font-bold mb-6 text-white`} >ProfilePage</Text>
-      <ScrollView>
+      {/* <ScrollView>
         <PostCard list={TOP_PLACES}/>
 
 
 
-      </ScrollView>
+      </ScrollView> */}
     </View>
 
   );
