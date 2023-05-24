@@ -54,7 +54,7 @@ const MapViewPage = () => {
   };
 
   const handleRegionChangeComplete = (region: Region) => {
-    setShouldUpdateRegion(true);
+    setShouldUpdateRegion(false);
   };
 
   const handleCardPress = (latitude: number, longitude: number) => {
