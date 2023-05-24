@@ -1,5 +1,6 @@
 import { View, StyleSheet } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import React, { useState } from 'react';
+import MapView, { Marker, Region} from 'react-native-maps';
 import mapStyle from './customMapStyle.json'; // import your custom map style
 import { ScrollView } from 'react-native';
 import PostCard from '../Pages/PostCard'
@@ -37,16 +38,48 @@ const MapViewPage = () => {
     },
   ];
 
+  const [currentRegion, setCurrentRegion] = useState({
+    latitude: 37.78825,
+    longitude: -122.4324,
+    latitudeDelta: 1.0,
+    longitudeDelta: 1.0,
+  });
+  const [shouldUpdateRegion, setShouldUpdateRegion] = useState(true);
+
+  const handleRegionChange = (region: Region) => {
+    if(shouldUpdateRegion){
+      setCurrentRegion(region);
+    }
+    
+  };
+
+  const handleRegionChangeComplete = (region: Region) => {
+    setShouldUpdateRegion(true);
+  };
+
+  const handleCardPress = (latitude: number, longitude: number) => {
+    setCurrentRegion({
+      latitude,
+      longitude,
+      latitudeDelta: 1.0,
+      longitudeDelta: 1.0,
+    });
+    setShouldUpdateRegion(false);
+  };
+
   return (
     <View style={styles.container}>
       <MapView
         style={{flex: 1}}
-        initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 1.0,
-          longitudeDelta: 1.0,
-        }}
+        // initialRegion={{
+        //   latitude: 37.78825,
+        //   longitude: -122.4324,
+        //   latitudeDelta: 1.0,
+        //   longitudeDelta: 1.0,
+        // }}
+        region={currentRegion}
+        onRegionChange={handleRegionChange}
+        onRegionChangeComplete={handleRegionChangeComplete}
         customMapStyle={mapStyle}
       >
         
@@ -68,7 +101,7 @@ const MapViewPage = () => {
 
       </MapView>
       <View style={styles.carouselContainer}>
-          <PostCard list={TOP_PLACES}/>
+          <PostCard list={TOP_PLACES} itemPress={handleCardPress}/>
       </View>
     </View>
   );

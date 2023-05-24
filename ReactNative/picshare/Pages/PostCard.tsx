@@ -21,13 +21,17 @@ interface Item {
 
 interface TopPlacesCarouselProps {
   list: Item[];
+  itemPress: (lat: number, long: number) =>void;
 }
 
 const CARD_WIDTH = sizes.width - 80;
 const CARD_HEIGHT = 200;
 const CARD_WIDTH_SPACING = CARD_WIDTH + spacing.l;
 
-const TopPlacesCarousel: React.FC<TopPlacesCarouselProps> = ({ list }) => {
+const TopPlacesCarousel: React.FC<TopPlacesCarouselProps> = ({ list,itemPress }) => {
+  const handleItemPress = (item: Item) =>{
+    itemPress(item.lat, item.long);
+  }
   return (
     <FlatList
       data={list}
@@ -43,6 +47,7 @@ const TopPlacesCarousel: React.FC<TopPlacesCarouselProps> = ({ list }) => {
               marginLeft: spacing.l,
               marginRight: index === list.length - 1 ? spacing.l : 0,
             }}
+            onPress={() => handleItemPress(item)}
           >
             <View style={[styles.card, shadow.dark]}>
               <View style={styles.imageBox}>
